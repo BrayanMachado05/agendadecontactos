@@ -4,8 +4,10 @@ package controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.JOptionPane;
 import modelo.agenda;
@@ -111,52 +113,39 @@ public controlador(Vista vi, agenda ag) {
   }
     
  public void mostrar() throws IOException{
-    ag.agregarArchivo(ag.agregarContactos());
+    ag.AñadirArchivo();
    
   }
  
- 
 
-     
-    
-// public void buscarregistro() throws IOException{
-//        vi.txt_Nombre.getText();
-//        ag.eliminarregistroarchivo();
-//    }
-//     
-     
-     
-public void leerArchivo(){     
-String codigo = new String(), path = "AgendaContactos.txt";
-File archivo = new File(path);
-FileReader fr = null;
-BufferedReader entrada = null;
-try {
-fr = new FileReader(path);
-entrada = new BufferedReader(fr);
-while(entrada.ready()){
-codigo += entrada.readLine()+"\n";
-}
-}catch(IOException e) {
-e.printStackTrace();
-}finally{
-try{                    
-if(null != fr){   
-fr.close();     
-}                  
-}catch (Exception e2){ 
-e2.printStackTrace();
-}
-}
-vi.txt_Visualizar.setText(codigo);
-}
         
  
-public void eliminarregistroarchivo(String filepath , int deleteLine){
-   vi.txt_Nombre.getText();
-   ag.eliminarregistroarchivo(filepath , deleteLine);
+public void mostrarArchivo() throws IOException{
+   vi.txt_Visualizar.setText(ag.estraer("AgendaContactos.txt"));
 }
 
+public  void borrarLinea() throws IOException {
+      
+        File inputFile = new File("AgendaContactos.txt");
+        File tempFile = new File("AgendaContactostemp.txt");
+        BufferedReader leer = new BufferedReader(new FileReader(inputFile));
+        BufferedWriter escribir = new BufferedWriter(new FileWriter(tempFile));
+        int lineaeliminar;
+        lineaeliminar = Integer.parseInt(vi.txt_EliminarLinea.getText());
+        String listaactual;
+        int contar = 0; 
+        while ((listaactual = leer.readLine()) != null) {
+            contar++;
+            if (contar == lineaeliminar) {
+                continue;
+            }
+            escribir.write(listaactual + System.getProperty("line.separator"));
+        }
+        escribir.close();
+        leer.close();
+        inputFile.delete();
+        tempFile.renameTo(inputFile);
+    }
  
    
 
@@ -188,7 +177,8 @@ public void actionPerformed(ActionEvent e) {
         EliminarContacto();    
         }
         else if(e.getSource()== vi.btn_ExisteContacto){
-        String nombre = null;
+ 
+            String nombre = null;
         ExisteContacto(nombre);     
         }
         else if(e.getSource()== vi.btn_GuardarArchivo){
@@ -196,13 +186,11 @@ public void actionPerformed(ActionEvent e) {
             mostrar();
             
         }else if(e.getSource()== vi.btn_LeerArchivo){
-          leerArchivo();  
+            
+          mostrarArchivo();  
         }
         else if(e.getSource()== vi.btn_EliminarReArchivo){
-         String filepath=null;
-         int deleteLine = 0;
-         eliminarregistroarchivo(filepath , deleteLine);
-         
+         borrarLinea();
         }
         
         

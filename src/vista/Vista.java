@@ -45,6 +45,8 @@ public class Vista extends javax.swing.JFrame {
         btn_GuardarArchivo = new javax.swing.JButton();
         btn_LeerArchivo = new javax.swing.JButton();
         btn_EliminarReArchivo = new javax.swing.JButton();
+        txt_EliminarLinea = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
@@ -93,7 +95,7 @@ public class Vista extends javax.swing.JFrame {
         txt_Visualizar.setRows(5);
         jScrollPane3.setViewportView(txt_Visualizar);
 
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 269, 430, 250));
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 430, 250));
 
         btn_HuecosLibres.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_HuecosLibres.setText("HUECOS LIBRES");
@@ -126,6 +128,18 @@ public class Vista extends javax.swing.JFrame {
         btn_EliminarReArchivo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_EliminarReArchivo.setText("ELIMINAR REGISTRO ARCHIVO");
         jPanel1.add(btn_EliminarReArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 430, 250, 50));
+
+        txt_EliminarLinea.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txt_EliminarLinea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_EliminarLineaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txt_EliminarLinea, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 230, 150, -1));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setText("ELIMINAR LINEA :");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, -1, -1));
 
         jTabbedPane1.addTab("GUARDAR CONTACTO", jPanel1);
 
@@ -216,6 +230,10 @@ public class Vista extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_GuardarContactoActionPerformed
 
+    private void txt_EliminarLineaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_EliminarLineaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_EliminarLineaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -232,6 +250,7 @@ public class Vista extends javax.swing.JFrame {
     public javax.swing.JButton btn_LeerArchivo;
     public javax.swing.JButton btn_VerificarAgenda;
     public javax.swing.JButton btn_VisualizarContactos;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -244,6 +263,7 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
+    public javax.swing.JTextField txt_EliminarLinea;
     public javax.swing.JTextField txt_Nombre;
     public javax.swing.JTextArea txt_Visualizar;
     public javax.swing.JTextField txt_telefono;

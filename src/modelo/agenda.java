@@ -1,25 +1,10 @@
 
 package modelo;
-
-
-
-
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
-
 import java.io.File;
-
-
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
-
-
-import java.nio.file.Files;
-
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 import javax.swing.JOptionPane;
 
 public class agenda extends contacto{
@@ -92,11 +77,6 @@ public class agenda extends contacto{
 
     }
    
-    public void agregarArchivo(String arreglo) throws IOException {
-        byte[] byteArr = arreglo.getBytes();
-        Files.write(Paths.get(getName()), byteArr, StandardOpenOption.APPEND);
-    }
-    
     
      public int get_lengt(){
         return this.contactos.length;
@@ -169,6 +149,7 @@ public class agenda extends contacto{
         try
         {
             BufferedReader leer=new BufferedReader(new FileReader ("AgendaContactos.txt"));
+            
             String linea="";
             while((linea=leer.readLine())!=null)
             {
@@ -186,93 +167,50 @@ public class agenda extends contacto{
         }
     }
     
-//    public void AñadirArchivo(int pos) throws IOException {
-//    String msj= "";
-//    try{
-//        fileW= new FileWriter(Archivo,true);
-//        for(int a = 0;a < get_lengt(); a++){
-//            if(getContacto(a)!=null){
-//                fileW.write(String.valueOf(getContacto(a).getNombre()));
-//                fileW.write(",");
-//                fileW.write(String.valueOf(getContacto(a).getTelefono()));
-//                fileW.write("\n");
-//                
-//            }else{
-//                fileW.close();
-//            }
-//    }
-//    }catch(IOException e){
-//        
-//    }
-//}
-
-    
-
-
-
-    //ioe.printStackTrace();
-    public void eliminarregistroarchivo(String filepath , int deleteLine){
-       
-       String tempFile ="temp.doc";
-       File oldFile = new File(filepath);
-       File newFile = new File(tempFile);
-       
-       String currentLine;
-       int line=0;
-       
-       try{
-           
-           FileWriter fw = new FileWriter(tempFile,true);
-           BufferedWriter bw = new BufferedWriter(fw);
-           PrintWriter pw = new PrintWriter(bw);
-           
-           FileReader fr = new FileReader(filepath);
-           BufferedReader br = new BufferedReader(fr);
-           
-           while((currentLine = br.readLine())!=null){
-              line++;
-              if(deleteLine !=line){
-                  pw.println(currentLine);
-              }
-           }
-           
-           pw.flush();
-           pw.close();
-           fr.close();
-           br.close();
-           bw.close();
-           fw.close();
-           
-           oldFile.delete();
-           File dump =new File(filepath);
-           newFile.renameTo(dump);
-           
-       }catch(Exception ex){
-           System.out.println(ex);
-       }
-    }
  
-
     
-
-
-
-
-    
-  
+ public String  estraer(String Archivo) throws IOException { 
+        String otra="";
+	String cadena;
+	FileReader f = new FileReader(Archivo); 
+	BufferedReader b = new BufferedReader(f); 
         
-    public String elimi(String arrego){
-        String msj = "";
+	while((cadena = b.readLine())!=null) { 
+           
+            otra += cadena+"\n";
+		
+	} 
+
+	b.close(); 
+        return otra;
         
-        return msj;
     }
+    
+    
+    public void AñadirArchivo() throws IOException {
+    String msj= "";
+    try{
+        fileW= new FileWriter("AgendaContactos.txt",true);
+        for(int a = 0;a < get_lengt(); a++){
+            if(getContacto(a)!=null){
+                fileW.write("");
+                fileW.write(String.valueOf(getContacto(a).getNombre()));
+                fileW.write(",");
+                fileW.write(String.valueOf(getContacto(a).getTelefono()));
+                fileW.write("\n");
+                
+            }else{
+                fileW.close();
+            }
+    }
+    }catch(IOException e){
+        
+    }
+        
+}
+    
+    
 
-    
-    
-    
-    
-    
-    
     
     
     private Object contacto(int a) {
