@@ -144,31 +144,7 @@ public class agenda extends contacto{
        }return msj;
     }
     
-    public void buscarRegistro(String nombre){
-    String contacto=nombre;
-        try
-        {
-            BufferedReader leer=new BufferedReader(new FileReader ("AgendaContactos.txt"));
-            
-            String linea="";
-            while((linea=leer.readLine())!=null)
-            {
-                if (linea.indexOf(contacto)!=-1)
-                {
-                    System.out.println("se encontro el registro: "+linea);
-                    
-                   
-                }
-            }
-        }
-        catch(Exception ex)
-        {
-            System.out.println(ex.getMessage());
-        }
-    }
-    
  
-    
  public String  estraer(String Archivo) throws IOException { 
         String otra="";
 	String cadena;
